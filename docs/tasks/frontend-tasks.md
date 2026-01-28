@@ -2,6 +2,8 @@
 
 > 基於 12 Week Year App PRD 與技術棧文件規劃
 
+**設計規範參考**: [設計系統文件](../design-system.md)
+
 ## 目錄
 - [Phase 1: 專案基礎建設](#phase-1-專案基礎建設)
 - [Phase 2: 核心功能模組](#phase-2-核心功能模組)
@@ -23,11 +25,20 @@
 
 ### 1.2 Web 專案設置 (Next.js)
 - [ ] 初始化 Next.js 15 + React 19
-- [ ] 配置 TailwindCSS 3.4.x
+- [ ] 配置 TailwindCSS 4.x
+- [ ] 整合 tw-animate-css 動畫庫
 - [ ] 整合 Radix UI 元件庫
 - [ ] 設定 Framer Motion 動畫
 - [ ] 配置 @opennextjs/cloudflare 適配器
 - [ ] 設定環境變數管理
+
+### 1.2.1 設計系統整合 (Web)
+- [ ] 配置 OKLCH 顏色變數 (參考 [設計系統](../design-system.md#顏色系統))
+- [ ] 設定字體: Noto Sans TC + Anonymous Pro
+- [ ] 建立排版樣式 (heading-xl/lg/md/sm, body-lg/md/sm)
+- [ ] 配置動畫系統 (fade, slide, float, stamp 等)
+- [ ] 設定深色模式切換
+- [ ] 建立 Container 響應式佈局
 
 ### 1.3 Mobile 專案設置 (React Native + Expo)
 - [ ] 初始化 Expo SDK 52 專案
