@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { MSWProvider } from "@/mocks";
 import { ToastProvider } from "@/components/ui";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -24,10 +25,12 @@ export function Providers({ children }: ProvidersProps) {
   );
 
   return (
-    <MSWProvider>
-      <QueryClientProvider client={queryClient}>
-        <ToastProvider>{children}</ToastProvider>
-      </QueryClientProvider>
-    </MSWProvider>
+    <ErrorBoundary>
+      <MSWProvider>
+        <QueryClientProvider client={queryClient}>
+          <ToastProvider>{children}</ToastProvider>
+        </QueryClientProvider>
+      </MSWProvider>
+    </ErrorBoundary>
   );
 }

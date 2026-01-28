@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import {
   LayoutDashboard,
   Target,
@@ -11,8 +12,10 @@ import {
   Users,
   Settings,
   User,
+  LogIn,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Avatar } from "@/components/ui";
 
 const navItems = [
   { href: "/", label: "儀表板", icon: LayoutDashboard },
@@ -23,8 +26,27 @@ const navItems = [
   { href: "/partners", label: "夥伴", icon: Users },
 ];
 
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
 export function Header() {
   const pathname = usePathname();
+
+  const { data: user, isLoading: isUserLoading } = useQuery<UserData>({
+    queryKey: ["user", "me"],
+    queryFn: async () => {
+      const res = await fetch("/api/v1/users/me");
+      if (!res.ok) throw new Error("Not authenticated");
+      return res.json();
+    },
+    retry: false,
+  });
+
+  const isAuthenticated = !!user;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -79,12 +101,31 @@ export function Header() {
             <Settings className="h-4 w-4" />
             <span className="hidden md:inline-block">設定</span>
           </Link>
-          <Link
-            href="/auth/login"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-muted transition-colors hover:bg-muted/80"
-          >
-            <User className="h-4 w-4 text-muted-foreground" />
-          </Link>
+
+          {isUserLoading ? (
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted animate-pulse" />
+          ) : isAuthenticated ? (
+            <Link
+              href="/settings"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-muted transition-colors hover:bg-muted/80 overflow-hidden"
+            >
+              {user.avatar ? (
+                <Avatar src={user.avatar} alt={user.name} size="sm" />
+              ) : (
+                <span className="text-sm font-medium text-foreground">
+                  {user.name.charAt(0).toUpperCase()}
+                </span>
+              )}
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors bg-primary-base text-white hover:bg-primary-darker"
+            >
+              <LogIn className="h-4 w-4" />
+              <span className="hidden md:inline-block">登入</span>
+            </Link>
+          )}
         </div>
       </div>
     </header>
