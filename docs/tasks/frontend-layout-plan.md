@@ -212,7 +212,7 @@
 │                                                                   │
 │  ┌─────────────────────────────────────────────────────────────┐ │
 │  │ 週計劃標題                                                    │
-│  │ [< 上週] Week 5 (1/27 - 2/2) [下週 >]         執行分數: 85%  │ │
+│  │ [< 上週] Week 5 (1/29 - 2/4) [下週 >]         執行分數: 85%  │ │
 │  └─────────────────────────────────────────────────────────────┘ │
 │                                                                   │
 │  ┌───────────────────────────────┐  ┌──────────────────────────┐ │
@@ -723,9 +723,9 @@ const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "完成登入功能",
-    dueDate: "2024-01-27",
+    dueDate: "2024-01-29",
     completed: true,
-    completedAt: "2024-01-27T15:30:00Z",
+    completedAt: "2024-01-29T15:30:00Z",
   },
   {
     id: "task-002",
@@ -733,7 +733,7 @@ const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "完成註冊功能",
-    dueDate: "2024-01-28",
+    dueDate: "2024-01-30",
     completed: false,
   },
   {
@@ -742,9 +742,9 @@ const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "撰寫 API 文件",
-    dueDate: "2024-01-29",
+    dueDate: "2024-01-31",
     completed: true,
-    completedAt: "2024-01-29T10:00:00Z",
+    completedAt: "2024-01-31T10:00:00Z",
   },
   {
     id: "task-004",
@@ -785,7 +785,7 @@ const mockWeeklyScores: WeeklyScore[] = [
   { id: "score-002", cycleId: "cycle-001", weekNumber: 2, plannedTasks: 15, completedTasks: 12, score: 82, startDate: "2024-01-08", endDate: "2024-01-14" },
   { id: "score-003", cycleId: "cycle-001", weekNumber: 3, plannedTasks: 15, completedTasks: 12, score: 80, startDate: "2024-01-15", endDate: "2024-01-21" },
   { id: "score-004", cycleId: "cycle-001", weekNumber: 4, plannedTasks: 15, completedTasks: 12, score: 80, startDate: "2024-01-22", endDate: "2024-01-28" },
-  { id: "score-005", cycleId: "cycle-001", weekNumber: 5, plannedTasks: 15, completedTasks: 12, score: 85, startDate: "2024-01-27", endDate: "2024-02-02" },
+  { id: "score-005", cycleId: "cycle-001", weekNumber: 5, plannedTasks: 15, completedTasks: 12, score: 85, startDate: "2024-01-29", endDate: "2024-02-04" },
 ];
 ```
 

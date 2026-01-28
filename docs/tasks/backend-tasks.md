@@ -175,19 +175,19 @@
 ### 3.1 夥伴模組 (`/api/v1/partners`)
 
 #### 夥伴管理
-- [ ] `POST /accountability/invite` - 發送邀請
-- [ ] `GET /accountability/invites` - 取得邀請列表
-- [ ] `PUT /accountability/invites/:id/accept` - 接受邀請
-- [ ] `PUT /accountability/invites/:id/decline` - 拒絕邀請
-- [ ] `GET /accountability/partners` - 取得夥伴列表
-- [ ] `DELETE /accountability/partners/:id` - 移除夥伴
+- [ ] `POST /partners/invite` - 發送邀請
+- [ ] `GET /partners/invites` - 取得邀請列表
+- [ ] `PUT /partners/invites/:id/accept` - 接受邀請
+- [ ] `PUT /partners/invites/:id/decline` - 拒絕邀請
+- [ ] `GET /partners` - 取得夥伴列表
+- [ ] `DELETE /partners/:id` - 移除夥伴
 
 #### 會議管理
-- [ ] `POST /accountability/meetings` - 建立會議
-- [ ] `GET /accountability/meetings` - 取得會議列表
-- [ ] `GET /accountability/meetings/:id` - 會議詳情
-- [ ] `PUT /accountability/meetings/:id` - 更新會議記錄
-- [ ] `DELETE /accountability/meetings/:id` - 取消會議
+- [ ] `POST /partners/meetings` - 建立會議
+- [ ] `GET /partners/meetings` - 取得會議列表
+- [ ] `GET /partners/meetings/:id` - 會議詳情
+- [ ] `PUT /partners/meetings/:id` - 更新會議記錄
+- [ ] `DELETE /partners/meetings/:id` - 取消會議
 - [ ] 會議提醒排程
 
 ### 3.2 行事曆整合 (`/api/v1/calendar`)
