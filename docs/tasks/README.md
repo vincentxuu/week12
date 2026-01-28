@@ -24,8 +24,8 @@
 │   願景設定    │   12週計劃   │   每週計劃    │    計分卡      │
 │   Vision     │    Goals     │  Weekly Plan  │   Scorecard   │
 ├──────────────┴──────────────┴──────────────┴────────────────┤
-│                      問責會議 (WAM)                          │
-│                    Accountability                            │
+│                      夥伴週會 (WAM)                          │
+│                       Partners                               │
 ├─────────────────────────────────────────────────────────────┤
 │   行事曆整合  │   推播通知   │   第13週回顧  │    匯出功能    │
 │   Calendar   │    Push     │   Week 13    │    Export     │
@@ -69,7 +69,7 @@ Week 12:    ░░░░░░░░░░░░░░░░░░░░░░�
 
 | 前端 | 後端 |
 |------|------|
-| 問責夥伴 UI | Accountability API |
+| 夥伴 UI | Partners API |
 | 行事曆整合 | Calendar API |
 | 推播通知 UI | Notification Service |
 | 第 13 週回顧 | Export API |
@@ -121,7 +121,7 @@ Week 12:    ░░░░░░░░░░░░░░░░░░░░░░�
 │                        Phase 3 (依賴開發)                        │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  [後端] Accountability API ───→ [前端] 問責夥伴 UI              │
+│  [後端] Partners API ────────→ [前端] 夥伴 UI                   │
 │  [後端] Calendar API ─────────→ [前端] 行事曆整合                │
 │  [後端] Notification Service ─→ [前端] 推播通知 UI              │
 │  [後端] Export API ───────────→ [前端] 匯出功能                  │

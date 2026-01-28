@@ -92,7 +92,7 @@ apps/mobile/
 │   │   ├── login.tsx
 │   │   └── register.tsx
 │   ├── vision/                 # 願景頁面
-│   ├── accountability/         # 問責夥伴
+│   ├── partners/               # 夥伴
 │   └── _layout.tsx             # 根 Layout
 ├── components/                 # React Native 元件
 │   ├── ui/                     # 基礎 UI 元件
@@ -191,7 +191,7 @@ apps/web/
 │   ├── plan/                   # 12週計劃
 │   ├── weekly/                 # 每週計劃
 │   ├── scorecard/              # 計分卡
-│   ├── accountability/         # 問責夥伴
+│   ├── partners/               # 夥伴
 │   ├── settings/               # 設定頁
 │   └── layout.tsx              # 根 Layout
 ├── components/                 # React 元件
@@ -241,7 +241,7 @@ packages/api-client/
 │   ├── goals.ts                # 目標 API
 │   ├── tactics.ts              # 戰術 API
 │   ├── scorecard.ts            # 計分卡 API
-│   └── accountability.ts       # 問責夥伴 API
+│   └── partners.ts             # 夥伴 API
 └── types.ts                    # API 回應型別
 ```
 

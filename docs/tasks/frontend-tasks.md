@@ -229,7 +229,7 @@
 
 ## Phase 3: 進階功能
 
-### 3.1 問責夥伴模組 (Accountability)
+### 3.1 夥伴模組 (Partners)
 
 #### Web
 - [ ] 夥伴搜尋/邀請功能
