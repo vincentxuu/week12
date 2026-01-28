@@ -17,3 +17,15 @@ export { Badge, type BadgeProps } from "./Badge";
 export { Progress, type ProgressProps } from "./Progress";
 export { Avatar, type AvatarProps } from "./Avatar";
 export { Skeleton, type SkeletonProps } from "./Skeleton";
+export { Select, type SelectProps, type SelectOption } from "./Select";
+export { ToastProvider, useToast, type Toast, type ToastType } from "./Toast";
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  type TabsProps,
+  type TabsListProps,
+  type TabsTriggerProps,
+  type TabsContentProps,
+} from "./Tabs";
