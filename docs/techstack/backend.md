@@ -67,7 +67,7 @@ backend/
 │   │   ├── weekly.ts       # 每週計劃
 │   │   ├── scorecard.ts    # 計分卡
 │   │   ├── vision.ts       # 願景
-│   │   ├── accountability.ts # 問責夥伴
+│   │   ├── partners.ts       # 夥伴
 │   │   ├── calendar.ts     # 行事曆整合
 │   │   └── notifications.ts # 推播通知
 │   └── utils/              # 工具函式
@@ -127,7 +127,7 @@ backend/
 │   ├── GET /trend              # 趨勢數據
 │   └── POST /calculate         # 手動計算分數
 │
-├── /accountability             # 問責夥伴
+├── /partners                   # 夥伴
 │   ├── GET /partners           # 夥伴列表
 │   ├── POST /invite            # 邀請夥伴
 │   ├── POST /accept/:id        # 接受邀請
@@ -245,8 +245,8 @@ CREATE TABLE cycles (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 問責夥伴
-CREATE TABLE accountability_partners (
+-- 夥伴
+CREATE TABLE partners (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL REFERENCES users(id),
     partner_id TEXT NOT NULL REFERENCES users(id),
@@ -254,8 +254,8 @@ CREATE TABLE accountability_partners (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 問責會議記錄
-CREATE TABLE accountability_meetings (
+-- 夥伴週會記錄
+CREATE TABLE partner_meetings (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL REFERENCES users(id),
     partner_id TEXT REFERENCES users(id),
