@@ -50,11 +50,49 @@
 - [ ] 建立快取策略
 - [ ] 評估 WatermelonDB 離線支援需求
 
+### 1.6 共用層 (packages/shared)
+- [ ] 建立 packages/shared 目錄結構
+- [ ] 定義 API 回應型別 (ApiResponse, PaginatedResponse)
+- [ ] 定義業務實體型別 (User, Vision, Goal, Tactic, Task, Scorecard)
+- [ ] 建立共用 Zod Schema (驗證規則)
+- [ ] 定義錯誤碼常數 (ErrorCode enum)
+- [ ] 定義狀態碼常數 (TaskStatus, CycleStatus 等)
+- [ ] 建立日期格式化工具
+- [ ] 建立分數計算工具函式
+
+### 1.7 API 契約與 Mock
+- [ ] 定義 OpenAPI/Swagger 規格
+- [ ] 設定 openapi-typescript 自動生成型別
+- [ ] 整合 MSW (Mock Service Worker) 開發用
+- [ ] 建立 API Mock 資料
+
+### 1.8 通用 UI 元件
+- [ ] Error Boundary 錯誤邊界元件
+- [ ] Loading Spinner / Skeleton 元件
+- [ ] Empty State 空狀態元件
+- [ ] Toast / Snackbar 通知元件
+- [ ] Confirmation Dialog 確認對話框
+- [ ] Pull to Refresh 下拉刷新 (Mobile)
+
 ---
 
 ## Phase 2: 核心功能模組
 
-### 2.1 認證模組 (Authentication)
+### 2.1 Onboarding 新手引導
+
+#### Web
+- [ ] 歡迎頁面設計
+- [ ] 12 Week Year 方法論介紹
+- [ ] 功能導覽 (Product Tour)
+- [ ] 首次願景設定引導
+
+#### Mobile
+- [ ] 歡迎畫面 (App Intro Slider)
+- [ ] 方法論介紹輪播
+- [ ] 權限請求說明 (通知、行事曆)
+- [ ] 首次設定引導流程
+
+### 2.2 認證模組 (Authentication)
 
 #### Web
 - [ ] 建立登入頁面 UI
@@ -74,7 +112,7 @@
 - [ ] 實作生物辨識登入 (Face ID / Touch ID)
 - [ ] Secure Store Token 管理
 
-### 2.2 願景設定模組 (Vision)
+### 2.3 願景設定模組 (Vision)
 
 #### 共用邏輯
 - [ ] 定義 Vision 資料型別
@@ -94,7 +132,7 @@
 - [ ] 願景卡片展示
 - [ ] 願景編輯功能
 
-### 2.3 12 週目標模組 (Goals)
+### 2.4 12 週目標模組 (Goals)
 
 #### 共用邏輯
 - [ ] 定義 Goal 資料型別
@@ -116,7 +154,7 @@
 - [ ] 進度環形圖展示
 - [ ] 滑動操作 (編輯/刪除)
 
-### 2.4 戰術模組 (Tactics)
+### 2.5 戰術模組 (Tactics)
 
 #### 共用邏輯
 - [ ] 定義 Tactic 資料型別
@@ -135,7 +173,7 @@
 - [ ] 頻率選擇器元件
 - [ ] 批次操作功能
 
-### 2.5 每週計劃模組 (Weekly Plan)
+### 2.6 每週計劃模組 (Weekly Plan)
 
 #### 共用邏輯
 - [ ] 定義 WeeklyTask 資料型別
@@ -156,7 +194,7 @@
 - [ ] 日/週視圖切換
 - [ ] 時間區塊規劃
 
-### 2.6 計分卡模組 (Scorecard)
+### 2.7 計分卡模組 (Scorecard)
 
 #### 共用邏輯
 - [ ] 計分公式實作: (完成任務 / 計劃任務) × 100%
@@ -266,6 +304,8 @@
 - [ ] 骨架屏 (Skeleton)
 - [ ] 載入動畫優化
 - [ ] 無障礙設計 (a11y)
+- [ ] 離線狀態提示 Banner
+- [ ] 網路恢復自動同步提示
 
 #### Mobile
 - [ ] 深色模式實作
@@ -273,6 +313,9 @@
 - [ ] 手勢操作優化
 - [ ] 動畫效能調校
 - [ ] 各裝置尺寸適配
+- [ ] 離線模式 UI 指示
+- [ ] 離線資料暫存提示
+- [ ] 同步衝突解決 UI
 
 ### 4.2 多語言支援 (i18n)
 
@@ -347,8 +390,8 @@
 | Phase | 預估週數 | 重點 |
 |-------|----------|------|
 | Phase 1 | 2 週 | 專案架構、基礎元件 |
-| Phase 2 | 6 週 | 核心功能開發 |
+| Phase 2 | 5 週 | 核心功能開發 |
 | Phase 3 | 3 週 | 進階功能、整合 |
-| Phase 4 | 1 週 | 測試、優化、部署 |
+| Phase 4 | 2 週 | 測試、優化、多語言、部署 |
 
 **總計：12 週 (符合 12 Week Year 精神)**

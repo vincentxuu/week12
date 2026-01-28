@@ -494,6 +494,83 @@ CREATE TABLE scorecards (
 );
 ```
 
+### accountability_partners
+```sql
+CREATE TABLE accountability_partners (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id),
+  partner_id TEXT NOT NULL REFERENCES users(id),
+  status TEXT DEFAULT 'pending',  -- 'pending', 'active', 'declined'
+  invited_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  accepted_at TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, partner_id)
+);
+```
+
+### accountability_meetings
+```sql
+CREATE TABLE accountability_meetings (
+  id TEXT PRIMARY KEY,
+  partnership_id TEXT NOT NULL REFERENCES accountability_partners(id),
+  scheduled_at TEXT NOT NULL,
+  duration_minutes INTEGER DEFAULT 30,
+  status TEXT DEFAULT 'scheduled',  -- 'scheduled', 'completed', 'cancelled'
+  notes TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### calendar_connections
+```sql
+CREATE TABLE calendar_connections (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id),
+  provider TEXT NOT NULL,  -- 'google', 'apple'
+  access_token TEXT,
+  refresh_token TEXT,
+  token_expires_at TEXT,
+  calendar_id TEXT,
+  sync_enabled INTEGER DEFAULT 1,
+  last_synced_at TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, provider)
+);
+```
+
+### device_tokens
+```sql
+CREATE TABLE device_tokens (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id),
+  token TEXT NOT NULL UNIQUE,
+  platform TEXT NOT NULL,  -- 'ios', 'android', 'web'
+  device_name TEXT,
+  is_active INTEGER DEFAULT 1,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### notification_settings
+```sql
+CREATE TABLE notification_settings (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL UNIQUE REFERENCES users(id),
+  daily_reminder INTEGER DEFAULT 1,
+  daily_reminder_time TEXT DEFAULT '09:00',
+  weekly_report INTEGER DEFAULT 1,
+  weekly_report_day INTEGER DEFAULT 0,  -- 0=Sunday
+  meeting_reminder INTEGER DEFAULT 1,
+  meeting_reminder_minutes INTEGER DEFAULT 30,
+  goal_deadline INTEGER DEFAULT 1,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+```
+
 ---
 
 ## 優先級說明
