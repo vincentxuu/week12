@@ -20,7 +20,7 @@ export const mockUser: User = {
   email: "user@example.com",
   avatar: "/avatars/default.png",
   timezone: "Asia/Taipei",
-  createdAt: "2024-01-01T00:00:00Z",
+  createdAt: "2026-01-01T00:00:00Z",
 };
 
 // Mock Visions
@@ -31,7 +31,7 @@ export const mockVisions: Vision[] = [
     type: "3-year",
     content:
       "成為一位具有影響力的產品設計師，帶領團隊打造出改變人們生活的產品。",
-    updatedAt: "2024-01-15T10:00:00Z",
+    updatedAt: "2026-01-15T10:00:00Z",
   },
   {
     id: "vision-002",
@@ -39,7 +39,7 @@ export const mockVisions: Vision[] = [
     type: "10-year",
     content:
       "創立自己的設計工作室，培養下一代設計人才，並為社會創造正面價值。",
-    updatedAt: "2024-01-15T10:00:00Z",
+    updatedAt: "2026-01-15T10:00:00Z",
   },
 ];
 
@@ -47,9 +47,9 @@ export const mockVisions: Vision[] = [
 export const mockCycle: Cycle = {
   id: "cycle-001",
   userId: "user-001",
-  name: "2024 Q1",
-  startDate: "2024-01-01",
-  endDate: "2024-03-24",
+  name: "2026 Q1",
+  startDate: "2026-01-01",
+  endDate: "2026-03-24",
   status: "active",
   currentWeek: 5,
 };
@@ -63,7 +63,7 @@ export const mockGoals: Goal[] = [
     description: "開發並上線 12 Week Year App 的 MVP 版本",
     progress: 75,
     order: 1,
-    createdAt: "2024-01-01T00:00:00Z",
+    createdAt: "2026-01-01T00:00:00Z",
   },
   {
     id: "goal-002",
@@ -72,7 +72,7 @@ export const mockGoals: Goal[] = [
     description: "培養規律運動和閱讀的習慣",
     progress: 60,
     order: 2,
-    createdAt: "2024-01-01T00:00:00Z",
+    createdAt: "2026-01-01T00:00:00Z",
   },
   {
     id: "goal-003",
@@ -81,7 +81,7 @@ export const mockGoals: Goal[] = [
     description: "完成 React Native 課程學習",
     progress: 90,
     order: 3,
-    createdAt: "2024-01-01T00:00:00Z",
+    createdAt: "2026-01-01T00:00:00Z",
   },
 ];
 
@@ -154,9 +154,9 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "完成登入功能",
-    dueDate: "2024-01-29",
+    dueDate: "2026-01-29",
     completed: true,
-    completedAt: "2024-01-29T15:30:00Z",
+    completedAt: "2026-01-29T15:30:00Z",
   },
   {
     id: "task-002",
@@ -164,7 +164,7 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "完成註冊功能",
-    dueDate: "2024-01-30",
+    dueDate: "2026-01-30",
     completed: false,
   },
   {
@@ -173,9 +173,9 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-001",
     weekNumber: 5,
     title: "撰寫 API 文件",
-    dueDate: "2024-01-31",
+    dueDate: "2026-01-31",
     completed: true,
-    completedAt: "2024-01-31T10:00:00Z",
+    completedAt: "2026-01-31T10:00:00Z",
   },
   {
     id: "task-004",
@@ -184,7 +184,7 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     weekNumber: 5,
     title: "運動 30 分鐘",
     completed: true,
-    completedAt: "2024-01-29T08:00:00Z",
+    completedAt: "2026-01-29T08:00:00Z",
   },
   {
     id: "task-005",
@@ -200,9 +200,9 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-003",
     weekNumber: 5,
     title: "完成第五單元學習",
-    dueDate: "2024-02-01",
+    dueDate: "2026-02-01",
     completed: true,
-    completedAt: "2024-01-30T20:00:00Z",
+    completedAt: "2026-01-30T20:00:00Z",
   },
   {
     id: "task-007",
@@ -210,7 +210,7 @@ export const mockWeeklyTasks: WeeklyTask[] = [
     goalId: "goal-003",
     weekNumber: 5,
     title: "完成 Todo App 練習",
-    dueDate: "2024-02-02",
+    dueDate: "2026-02-02",
     completed: false,
   },
 ];
@@ -224,8 +224,8 @@ export const mockWeeklyScores: WeeklyScore[] = [
     plannedTasks: 14,
     completedTasks: 11,
     score: 78,
-    startDate: "2024-01-01",
-    endDate: "2024-01-07",
+    startDate: "2026-01-01",
+    endDate: "2026-01-07",
   },
   {
     id: "score-002",
@@ -234,8 +234,8 @@ export const mockWeeklyScores: WeeklyScore[] = [
     plannedTasks: 15,
     completedTasks: 12,
     score: 82,
-    startDate: "2024-01-08",
-    endDate: "2024-01-14",
+    startDate: "2026-01-08",
+    endDate: "2026-01-14",
   },
   {
     id: "score-003",
@@ -244,8 +244,8 @@ export const mockWeeklyScores: WeeklyScore[] = [
     plannedTasks: 15,
     completedTasks: 12,
     score: 80,
-    startDate: "2024-01-15",
-    endDate: "2024-01-21",
+    startDate: "2026-01-15",
+    endDate: "2026-01-21",
   },
   {
     id: "score-004",
@@ -254,8 +254,8 @@ export const mockWeeklyScores: WeeklyScore[] = [
     plannedTasks: 15,
     completedTasks: 12,
     score: 80,
-    startDate: "2024-01-22",
-    endDate: "2024-01-28",
+    startDate: "2026-01-22",
+    endDate: "2026-01-28",
   },
   {
     id: "score-005",
@@ -264,8 +264,8 @@ export const mockWeeklyScores: WeeklyScore[] = [
     plannedTasks: 15,
     completedTasks: 12,
     score: 85,
-    startDate: "2024-01-29",
-    endDate: "2024-02-04",
+    startDate: "2026-01-29",
+    endDate: "2026-02-04",
   },
 ];
 
@@ -295,14 +295,14 @@ export const mockMeetings: Meeting[] = [
     id: "meeting-001",
     partnerId: "partner-001",
     weekNumber: 5,
-    scheduledAt: "2024-01-28T19:00:00Z",
+    scheduledAt: "2026-01-28T19:00:00Z",
     status: "scheduled",
   },
   {
     id: "meeting-002",
     partnerId: "partner-001",
     weekNumber: 4,
-    scheduledAt: "2024-01-21T19:00:00Z",
+    scheduledAt: "2026-01-21T19:00:00Z",
     status: "completed",
     notes: "討論了本週的執行狀況，確認下週目標。",
     commitments: ["完成登入功能", "每日運動30分鐘"],
@@ -311,7 +311,7 @@ export const mockMeetings: Meeting[] = [
     id: "meeting-003",
     partnerId: "partner-001",
     weekNumber: 3,
-    scheduledAt: "2024-01-14T19:00:00Z",
+    scheduledAt: "2026-01-14T19:00:00Z",
     status: "completed",
     notes: "回顧第三週進度，調整戰術執行方式。",
     commitments: ["完成 UI 設計稿", "閱讀書籍第三章"],
@@ -337,7 +337,7 @@ export const mockTimeBlocks: TimeBlock[] = [
     type: "strategic",
     title: "核心功能開發",
     description: "專注完成登入與註冊功能",
-    date: "2024-01-29",
+    date: "2026-01-29",
     startTime: "09:00",
     endTime: "12:00",
   },
@@ -345,7 +345,7 @@ export const mockTimeBlocks: TimeBlock[] = [
     id: "block-002",
     type: "buffer",
     title: "郵件與行政事務",
-    date: "2024-01-29",
+    date: "2026-01-29",
     startTime: "14:00",
     endTime: "15:00",
   },
@@ -354,7 +354,7 @@ export const mockTimeBlocks: TimeBlock[] = [
     type: "breakout",
     title: "學習與規劃",
     description: "React Native 課程學習",
-    date: "2024-01-29",
+    date: "2026-01-29",
     startTime: "16:00",
     endTime: "19:00",
   },
@@ -362,7 +362,7 @@ export const mockTimeBlocks: TimeBlock[] = [
     id: "block-004",
     type: "strategic",
     title: "技術文件撰寫",
-    date: "2024-01-30",
+    date: "2026-01-30",
     startTime: "09:00",
     endTime: "12:00",
   },

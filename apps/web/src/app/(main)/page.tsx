@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from "@/components/layout";
 import {
   Card,
@@ -5,15 +7,10 @@ import {
   CardHeader,
   CardTitle,
   Progress,
-  Badge,
   Button,
+  Skeleton,
 } from "@/components/ui";
-import {
-  mockDashboardSummary,
-  mockGoals,
-  mockWeeklyScores,
-  getUpcomingTasks,
-} from "@/mocks";
+import { useQuery } from "@tanstack/react-query";
 import {
   TrendingUp,
   Target,
@@ -21,13 +18,97 @@ import {
   Plus,
   Calendar,
   Users,
+  AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
 
+interface DashboardData {
+  cycle: {
+    id: string;
+    currentWeek: number;
+  };
+  currentWeekScore: number;
+  previousWeekScore: number;
+  scoreTrend: number;
+  tasksCompleted: number;
+  tasksTotal: number;
+  goalsProgress: Array<{
+    id: string;
+    title: string;
+    progress: number;
+  }>;
+  upcomingTasks: Array<{
+    id: string;
+    title: string;
+    completed: boolean;
+    dueDate?: string;
+  }>;
+  weeklyScores: Array<{
+    id: string;
+    weekNumber: number;
+    score: number;
+  }>;
+}
+
 export default function DashboardPage() {
-  const summary = mockDashboardSummary;
-  const upcomingTasks = getUpcomingTasks();
-  const weeklyScores = mockWeeklyScores;
+  const {
+    data: dashboard,
+    isLoading,
+    error,
+  } = useQuery<DashboardData>({
+    queryKey: ["dashboard", "summary"],
+    queryFn: async () => {
+      const res = await fetch("/api/v1/dashboard/summary");
+      if (!res.ok) throw new Error("Failed to fetch dashboard data");
+      return res.json();
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <Container className="py-8">
+        <Skeleton className="h-24 w-full mb-8" />
+        <div className="grid gap-4 md:grid-cols-3 mb-8">
+          <Skeleton className="h-40" />
+          <Skeleton className="h-40" />
+          <Skeleton className="h-40" />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-5">
+          <Skeleton className="h-64 lg:col-span-3" />
+          <Skeleton className="h-64 lg:col-span-2" />
+        </div>
+      </Container>
+    );
+  }
+
+  if (error || !dashboard) {
+    return (
+      <Container className="py-8">
+        <Card className="border-destructive">
+          <CardContent className="py-8 text-center">
+            <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+            <h2 className="text-lg font-semibold mb-2">載入失敗</h2>
+            <p className="text-muted-foreground">
+              無法載入儀表板數據，請稍後再試。
+            </p>
+          </CardContent>
+        </Card>
+      </Container>
+    );
+  }
+
+  const currentWeek = dashboard.cycle.currentWeek;
+  const totalWeeks = 12;
+  const weeklyScore = dashboard.currentWeekScore;
+  const weeklyScoreChange = dashboard.scoreTrend;
+  const goalsCompleted = dashboard.goalsProgress.filter(
+    (g) => g.progress >= 100
+  ).length;
+  const totalGoals = dashboard.goalsProgress.length;
+  const tasksCompleted = dashboard.tasksCompleted;
+  const totalTasks = dashboard.tasksTotal;
+  const taskProgressPercent =
+    totalTasks > 0 ? (tasksCompleted / totalTasks) * 100 : 0;
 
   return (
     <Container className="py-8">
@@ -35,7 +116,7 @@ export default function DashboardPage() {
       <Card className="mb-8 bg-gradient-primary-palest border-none">
         <CardContent className="py-6">
           <h1 className="heading-lg text-foreground">
-            Week {summary.currentWeek} of {summary.totalWeeks}
+            Week {currentWeek} of {totalWeeks}
           </h1>
           <p className="body-md text-muted-foreground mt-1">
             你正在往目標前進！繼續保持這個動力。
@@ -54,16 +135,12 @@ export default function DashboardPage() {
             <TrendingUp className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{summary.weeklyScore}%</div>
+            <div className="text-3xl font-bold">{weeklyScore}%</div>
             <div className="flex items-center gap-1 text-sm text-success mt-1">
               <TrendingUp className="h-3 w-3" />
-              <span>↑ {summary.weeklyScoreChange}%</span>
+              <span>↑ {weeklyScoreChange}%</span>
             </div>
-            <Progress
-              value={summary.weeklyScore}
-              className="mt-3"
-              variant="success"
-            />
+            <Progress value={weeklyScore} className="mt-3" variant="success" />
           </CardContent>
         </Card>
 
@@ -77,11 +154,11 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">
-              {summary.goalsCompleted}/{summary.totalGoals}
+              {goalsCompleted}/{totalGoals}
             </div>
             <p className="text-sm text-muted-foreground mt-1">目標完成</p>
             <div className="flex gap-1 mt-3">
-              {mockGoals.map((goal) => (
+              {dashboard.goalsProgress.map((goal) => (
                 <div
                   key={goal.id}
                   className="flex-1 h-2 rounded-full bg-muted overflow-hidden"
@@ -106,15 +183,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">
-              {summary.tasksCompleted}/{summary.totalTasks}
+              {tasksCompleted}/{totalTasks}
             </div>
             <p className="text-sm text-muted-foreground mt-1">
-              待完成: {summary.totalTasks - summary.tasksCompleted}
+              待完成: {totalTasks - tasksCompleted}
             </p>
-            <Progress
-              value={(summary.tasksCompleted / summary.totalTasks) * 100}
-              className="mt-3"
-            />
+            <Progress value={taskProgressPercent} className="mt-3" />
           </CardContent>
         </Card>
       </div>
@@ -128,8 +202,11 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="flex items-end justify-between h-40 gap-2">
-              {weeklyScores.map((score) => (
-                <div key={score.id} className="flex-1 flex flex-col items-center gap-2">
+              {dashboard.weeklyScores.map((score) => (
+                <div
+                  key={score.id}
+                  className="flex-1 flex flex-col items-center gap-2"
+                >
                   <div className="relative w-full">
                     <div
                       className="w-full bg-primary-lighter rounded-t transition-all hover:bg-primary-base"
@@ -143,17 +220,22 @@ export default function DashboardPage() {
                 </div>
               ))}
               {/* Placeholder for remaining weeks */}
-              {Array.from({ length: 7 }).map((_, i) => (
-                <div key={`empty-${i}`} className="flex-1 flex flex-col items-center gap-2">
-                  <div className="relative w-full">
-                    <div className="w-full bg-muted h-4 rounded-t" />
+              {Array.from({ length: 12 - dashboard.weeklyScores.length }).map(
+                (_, i) => (
+                  <div
+                    key={`empty-${i}`}
+                    className="flex-1 flex flex-col items-center gap-2"
+                  >
+                    <div className="relative w-full">
+                      <div className="w-full bg-muted h-4 rounded-t" />
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      W{dashboard.weeklyScores.length + i + 1}
+                    </span>
+                    <span className="text-xs text-muted-foreground">-</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">
-                    W{weeklyScores.length + i + 1}
-                  </span>
-                  <span className="text-xs text-muted-foreground">-</span>
-                </div>
-              ))}
+                )
+              )}
             </div>
             <div className="flex items-center justify-center gap-4 mt-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -180,7 +262,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
-              {upcomingTasks.map((task) => (
+              {dashboard.upcomingTasks.map((task) => (
                 <li key={task.id} className="flex items-center gap-3">
                   <input
                     type="checkbox"
