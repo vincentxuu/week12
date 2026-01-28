@@ -1,0 +1,37 @@
+name = "week12-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-27"
+
+[vars]
+ENVIRONMENT = "development"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "week12-db"
+database_id = "YOUR_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "week12-storage"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "YOUR_KV_ID"
+
+[env.preview]
+name = "week12-api-preview"
+[env.preview.vars]
+ENVIRONMENT = "preview"
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "week12-db-preview"
+database_id = "YOUR_PREVIEW_DATABASE_ID"
+
+[env.production]
+name = "week12-api-production"
+[env.production.vars]
+ENVIRONMENT = "production"
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "week12-db"
+database_id = "YOUR_DATABASE_ID"
