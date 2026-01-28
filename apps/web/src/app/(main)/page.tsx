@@ -21,6 +21,12 @@ import {
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
+import {
+  mockCycle,
+  mockGoals,
+  mockWeeklyTasks,
+  mockWeeklyScores,
+} from "@/mocks/data";
 
 interface DashboardData {
   cycle: {
@@ -50,6 +56,36 @@ interface DashboardData {
   }>;
 }
 
+// Mock data helper - 暫時直接使用 mock data，後端 API 完成後切換
+function getMockDashboardData(): DashboardData {
+  const currentWeekTasks = mockWeeklyTasks.filter(
+    (t) => t.weekNumber === mockCycle.currentWeek
+  );
+  const completedTasks = currentWeekTasks.filter((t) => t.completed);
+  const currentScore =
+    mockWeeklyScores.find((s) => s.weekNumber === mockCycle.currentWeek)
+      ?.score ?? 0;
+  const previousScore =
+    mockWeeklyScores.find((s) => s.weekNumber === mockCycle.currentWeek - 1)
+      ?.score ?? 0;
+
+  return {
+    cycle: mockCycle,
+    currentWeekScore: currentScore,
+    previousWeekScore: previousScore,
+    scoreTrend: currentScore - previousScore,
+    tasksCompleted: completedTasks.length,
+    tasksTotal: currentWeekTasks.length,
+    goalsProgress: mockGoals.map((g) => ({
+      id: g.id,
+      title: g.title,
+      progress: g.progress,
+    })),
+    upcomingTasks: currentWeekTasks.filter((t) => !t.completed).slice(0, 5),
+    weeklyScores: mockWeeklyScores,
+  };
+}
+
 export default function DashboardPage() {
   const {
     data: dashboard,
@@ -58,9 +94,11 @@ export default function DashboardPage() {
   } = useQuery<DashboardData>({
     queryKey: ["dashboard", "summary"],
     queryFn: async () => {
-      const res = await fetch("/api/v1/dashboard/summary");
-      if (!res.ok) throw new Error("Failed to fetch dashboard data");
-      return res.json();
+      // TODO: 後端 API 完成後切換為真實 API
+      // const res = await fetch("/api/v1/dashboard/summary");
+      // if (!res.ok) throw new Error("Failed to fetch dashboard data");
+      // return res.json();
+      return getMockDashboardData();
     },
   });
 
